@@ -20,7 +20,7 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node backend/server.js",
     "client": "node start-client.js",
-    "heroku-postbuild": "concurrently \"cd client\" \" npm run build\""
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "devDependencies": {
     "concurrently": "^4.1.1"

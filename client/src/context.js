@@ -55,7 +55,7 @@ class ProductProvider extends React.Component {
     e.preventDefault();
     //on submital, send to server for authentification check
     axios
-      .post("http://localhost:5000/api/user/login", {
+      .post("/api/user/login", {
         username: this.state.loginUsername,
         password: this.state.loginPassword
       })
@@ -81,7 +81,7 @@ class ProductProvider extends React.Component {
 
   logout = () => {
     axios
-      .get("http://localhost:5000/api/user/logout")
+      .get("/api/user/logout")
       .then(res => {
         this.setState({
           isLoggedIn: false,
@@ -341,7 +341,7 @@ class ProductProvider extends React.Component {
     if (currentListId) {
       axios
         .get(
-          `http://localhost:5000/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`
+          `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`
         )
         .then(res => this.setState({ currentWishlist: res.data }))
         .catch(err => console.log(err));
@@ -357,7 +357,7 @@ class ProductProvider extends React.Component {
     const userId = this.state.currentUser._id;
 
     axios
-      .post("http://localhost:5000/api/user/" + userId + "/wishlists", {
+      .post("/api/user/" + userId + "/wishlists", {
         listname: newListName
       })
       .then(res => {
@@ -389,7 +389,7 @@ class ProductProvider extends React.Component {
 
     axios
       .post(
-        `http://localhost:5000/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`,
+        `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`,
         { productId: pId }
       )
       .then(res => this.setState({ currentWishlist: res.data })) //should send the updatedlist with newly added product
@@ -402,9 +402,7 @@ class ProductProvider extends React.Component {
     let currentListId = this.getListId(currentListName);
 
     axios
-      .get(
-        `http://localhost:5000/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`
-      )
+      .get(`/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`)
       .then(res => this.setState({ currentWishlist: res.data })) //should send the updatedlist with newly added product
       .catch(err => console.log(err));
   };
@@ -415,7 +413,7 @@ class ProductProvider extends React.Component {
     let currentListId = this.state.currentWishlist._id;
     axios
       .post(
-        `http://localhost:5000/api/user/${this.state.currentUser._id}/wishlists/${currentListId}/update`,
+        `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}/update`,
 
         { productId: pId }
       )
@@ -426,7 +424,7 @@ class ProductProvider extends React.Component {
   // ====================== CART PAGE =======================//
   loadCart = () => {
     axios
-      .get(`http://localhost:5000/api/user/${this.state.currentUser._id}/cart`)
+      .get(`/api/user/${this.state.currentUser._id}/cart`)
       .then(res => {
         if (res.data[0].selectedCount) {
           this.setState({ cart: res.data }, () => {
@@ -472,10 +470,7 @@ class ProductProvider extends React.Component {
       }
 
       axios
-        .post(
-          `http://localhost:5000/api/user/${this.state.currentUser._id}/cart`,
-          updatedProduct
-        )
+        .post(`/api/user/${this.state.currentUser._id}/cart`, updatedProduct)
         //update the cart with response from db
         .then(res => {
           this.setState({ cart: res.data }, () => {
@@ -493,9 +488,7 @@ class ProductProvider extends React.Component {
     console.log("removing item");
     if (p_id) {
       axios
-        .delete(
-          `http://localhost:5000/api/user/${this.state.currentUser._id}/cart/${p_id}`
-        )
+        .delete(`/api/user/${this.state.currentUser._id}/cart/${p_id}`)
         .then(res => {
           this.setState({ cart: res.data }, () => this.addTotal());
         })
@@ -517,10 +510,7 @@ class ProductProvider extends React.Component {
     }
 
     axios
-      .put(
-        `http://localhost:5000/api/user/${this.state.currentUser._id}/cart`,
-        tempCart
-      )
+      .put(`/api/user/${this.state.currentUser._id}/cart`, tempCart)
       .then(res => {
         this.setState({ cart: res.data }, () => {
           console.log("updated cart in state is");
@@ -542,10 +532,7 @@ class ProductProvider extends React.Component {
     }
 
     axios
-      .put(
-        `http://localhost:5000/api/user/${this.state.currentUser._id}/cart`,
-        tempCart
-      )
+      .put(`/api/user/${this.state.currentUser._id}/cart`, tempCart)
       .then(res => {
         this.setState({ cart: res.data }, () => {
           console.log("updated cart in state is");
@@ -579,9 +566,7 @@ class ProductProvider extends React.Component {
     //clear everything in
     console.log("clearing cart");
     axios
-      .delete(
-        `http://localhost:5000/api/user/${this.state.currentUser._id}/cart/9`
-      )
+      .delete(`/api/user/${this.state.currentUser._id}/cart/9`)
       .then(res =>
         this.setState({ cart: [], tempSelected: [] }, () => {
           this.addTotal();
