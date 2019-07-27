@@ -7,7 +7,7 @@ const User = require("../models/users");
 const Wishlist = require("../models/wishlists");
 //the only verification is if user is loggin
 const middleware = require("../middleware/index");
-const methodOverride = require("method-override");
+
 const flash = require("connect-flash");
 
 // const passport = require("passport");
