@@ -63,6 +63,10 @@ class AppPage extends React.Component {
       "background:var(--mainWhite) !important;";
   };
   render() {
+    if (process.env) {
+      console.log(process.env.PORT);
+    }
+
     return (
       <React.Fragment>
         <Navbar pathname={this.state.pathname} />
