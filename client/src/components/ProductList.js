@@ -10,7 +10,6 @@ export default class ProductList extends React.Component {
     document.getElementById("navwrapper").style.cssText =
       "background:var(--mainGreen) !important;transition:background 0.5s linear;";
     this.props.setPathName();
-    // = await teleport.get("cities/?search=" + city);
   }
   changeToGreen = () => {
     document.getElementById("navwrapper").style.cssText =
@@ -21,7 +20,6 @@ export default class ProductList extends React.Component {
       "background:var(--mainWhite) !important;transition:background 0.5s linear;";
   };
   render() {
-    // const allProduct = products.map(i => <Product item={i} />);
     return (
       <React.Fragment>
         <Banner
@@ -35,7 +33,6 @@ export default class ProductList extends React.Component {
         <div className="py-5">
           <div className="container">
             <ToastContainer />
-            {/*<Title name="our" title="products" />*/}
             <div className="row">
               <ProductConsumer>
                 {value => {

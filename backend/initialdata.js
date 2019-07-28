@@ -4,6 +4,7 @@ const products = [
     title: "Model One",
     company: "Monstruosus",
     price: "160-235",
+    link: "https://monstruosus.com",
     projectimage: [
       "https://monstruosus.com/wp-content/uploads/2018/03/23720006-1024x679.jpg",
       "https://s7d2.scene7.com/is/image/DesignWithinReach/PD_2515192_ENV4?hei=825&resMode=sharp"
@@ -106,6 +107,7 @@ to create a uniform effect. ",
     title: "Model Three",
     company: "Monstruosus",
     price: "185-360",
+    link: "https://monstruosus.com",
     image: "image/mons_model3.png",
     material: "Matte glazed earthenware ceramic",
     projectimage: [
@@ -155,6 +157,7 @@ to create a uniform effect. ",
     company: "Planterworx",
     price: "450",
     image: "image/planterwox_taper.png",
+    link: "https://www.planterworx.com/",
     material: "See Specs",
     projectimage: [
       "https://s7d2.scene7.com/is/image/DesignWithinReach/PD_1225_ENV3?hei=825&resMode=sharp"
@@ -183,6 +186,7 @@ to create a uniform effect. ",
     company: "Kornegay",
     price: "825-1625",
     image: "image/kornegay_sq.png",
+    link: "http://kornegaydesign.com/",
     material: "cast concrete",
     projectimage: [
       "http://kornegaydesign.com/wp-content/uploads/2016/08/blog-larkspur-series-featured.jpg"
@@ -216,6 +220,7 @@ to create a uniform effect. ",
     company: "Janice Et Cie",
     price: "340-560",
     image: "image/janecie_sq.png",
+    link: "https://www.janusetcie.com/image-bank/janusstone-planters-9/",
     material: "metal",
     projectimage: [
       "https://www.janusetcie.com/wp-content/uploads/Tapered-Chamfered_281HSR_218.jpg",
@@ -265,6 +270,7 @@ to create a uniform effect. ",
     company: "urbilis",
     price: 275,
     image: "image/large-jewel-plinth-white.png",
+    link: "https://www.urbilis.com/",
     material: "High fire stoneware ceramic",
     projectimage: [],
     specs: [
@@ -296,6 +302,7 @@ to create a uniform effect. ",
     company: "Planterworx",
     price: "395-475",
     image: "image/planterwox_rec.png",
+    link: "https://www.planterworx.com/",
     material: "Weather Metal",
     projectimage: [
       "https://static1.squarespace.com/static/55df87b4e4b096a14817e81b/5604839be4b0612d66a5a22c/5627e8f0e4b0a5a4d2bc779a/1543249977234/?format=2500w",
@@ -335,6 +342,7 @@ to create a uniform effect. ",
     company: "Planterworx",
     price: 275,
     image: "image/planterwox_studio.png",
+    link: "https://www.planterworx.com/",
     material: "Weathered Steel",
     projectimage: [
       "https://images.squarespace-cdn.com/content/v1/55df87b4e4b096a14817e81b/1542819466315-VZ2QJJQ653D40PFOGS1D/ke17ZwdGBToddI8pDm48kGPVK--wGoWXJsqwlxbZlQN7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5enfxu_O4VeONvneR-F6W8oeFhFqSrYyNrfPB9Y70_gvQ/21+Chestnut+Street+view1-0223.jpg?format=2500w"
@@ -364,53 +372,4 @@ to create a uniform effect. ",
   }
 ];
 
-const detailedproducts = {
-  pid: 4,
-  title: "detail product",
-  company: "urbilis",
-  price: 275,
-  image: "image/large-jewel-plinth-white.jpg",
-  link: "https://ore.design/products/cylinder/",
-  specs: [
-    {
-      dimension: '20" x 18" H',
-      finish: "Linen White Powder Coat",
-      price: 860
-    },
-    {
-      dimension: '20" x 18" H',
-      finish: "Metalic Silver Power Coat",
-      price: 860
-    },
-    { dimension: '20" x 18" H', finish: "Rust Power Coat", price: 860 },
-    {
-      dimension: '25" x 20" H',
-      finish: "Linen White Powder Coat",
-      price: 1010
-    },
-    {
-      dimension: '25" x 20" H',
-      finish: "Metalic Silver Power Coat",
-      price: 1010
-    },
-    { dimension: '25" x 20" H', finish: "Rust Power Coat", price: 1010 },
-    {
-      dimension: '30" x 22" H',
-      finish: "Linen White Powder Coat",
-      price: 1220
-    },
-    {
-      dimension: '30" x 22" H',
-      finish: "Metalic Silver Power Coat",
-      price: 1220
-    },
-    { dimension: '30" x 22" H', finish: "Rust Power Coat", price: 1220 }
-  ],
-  description:
-    "The Case Study Large Jewel with Plinth is clean and elegant in form. This sharp modern planter is made of high fire stoneware ceramic as well as three matte colors: pebble, charcoal, and white. The stand is available Brazilian walnut wood. The gorgeous wood stand is crafted from walnut and, with proper care, is 100% waterproof—suitable for any situation!",
-
-  count: 0,
-  total: 0
-};
-
-module.exports = { products, detailedproducts };
+module.exports = { products };

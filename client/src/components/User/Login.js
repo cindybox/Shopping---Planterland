@@ -16,10 +16,7 @@ class LoginPage extends Component {
             onLoginSubmit,
             onLoginName,
             onLoginPassword,
-            // loginUsername,
             isLoggedIn
-            //err Message comes after login
-            // errMessage
           } = value;
           if (isLoggedIn) {
             setTimeout(() => this.props.history.push("/"), 1200);
@@ -35,7 +32,7 @@ class LoginPage extends Component {
                   <div className="card mb-3">
                     <div className="card-header">
                       <h1 className="text-center">Login</h1>
-                    </div>{" "}
+                    </div>
                     <div>
                       <ToastContainer />
                     </div>

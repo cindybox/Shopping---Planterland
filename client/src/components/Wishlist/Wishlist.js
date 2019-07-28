@@ -9,7 +9,6 @@ import LoginRedirect from "../User/LoginRedirect";
 class WishlistElement extends Component {
   componentDidMount = () => {
     this.props.setPathName();
-    this.props.value.loadWishlist();
   };
 
   render() {
@@ -17,21 +16,18 @@ class WishlistElement extends Component {
       isLoggedIn,
       currentUser,
       currentWishlist,
-      // products,
       changeCurrentList,
-
       createNewList,
       handleNewList
     } = this.props.value;
     let selectedProducts;
-
     let { wishlists } = currentUser;
     if (currentWishlist) {
       selectedProducts = currentWishlist.products;
     }
 
     if (isLoggedIn) {
-      return currentUser.wishlists.length > 0 ? (
+      return wishlists.length > 0 ? (
         <div className="py-5">
           <div className="container">
             <WishlistWrapper>
@@ -45,22 +41,11 @@ class WishlistElement extends Component {
                   <hr />
                   {/*LISTNAMES*/}
                   <ul className=" mt-5 col-10 mx-auto">
-                    {wishlists && wishlists.length > 0 ? (
-                      wishlists.map(w => (
-                        <li
-                          onClick={changeCurrentList}
-                          className="wishlistname"
-                        >
-                          {w.listname}
-                        </li>
-                      ))
-                    ) : (
-                      <div className="">
-                        <h5 className="text-text-capitalize text-center">
-                          you don't have any list created yet
-                        </h5>
-                      </div>
-                    )}
+                    {wishlists.map(w => (
+                      <li onClick={changeCurrentList} className="wishlistname">
+                        {w.listname}
+                      </li>
+                    ))}
                     {/*NEW LIST INPUT*/}
                     <div className=" py-3 mx-auto">
                       <form
@@ -91,19 +76,15 @@ class WishlistElement extends Component {
                 {/*PRODUCT COLUMN*/}
                 <div className="col-10 col-lg-9 mx-auto ">
                   <div className="row">
-                    {/*if there is no list name, should ask to add list name*/}
-
-                    {/*if there is no product, redirect to the product page to add products*/}
                     {selectedProducts && selectedProducts.length > 0 ? (
-                      selectedProducts.map(p =>
-                        p && p.title ? (
-                          <Product item={p} inWishlist />
-                        ) : (
-                          <h5>you don't have any products in this list</h5>
-                        )
-                      )
+                      selectedProducts.map(p => <Product item={p} inWishlist />)
                     ) : (
-                      <div> </div>
+                      <div
+                        style={{ height: "50vh" }}
+                        className="col-9 mx-auto mt-5 d-flex align-items-center justify-content-center"
+                      >
+                        <h5>you don't have any products in this list</h5>{" "}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -115,7 +96,7 @@ class WishlistElement extends Component {
         <EmptyWishlist />
       );
     } else {
-      return <LoginRedirect location="Wishlist" />;
+      return <LoginRedirect location="Wishlist" />; //Remind User to Log In
     }
   }
 }

@@ -24,7 +24,7 @@ export const CartItem = ({ item, value }) => {
             width={{ width: "2rem", height: "2rem" }}
             className="img-fluid"
             onClick={() => value.handleDetail(item.pid)}
-          />{" "}
+          />
         </Link>
       </div>
       <div className="col-10 mx-auto col-lg-2">
@@ -65,10 +65,6 @@ export const CartItem = ({ item, value }) => {
           <i className="fas fa-trash" />
         </div>
       </div>
-
-      {/*   <div className="col-10 mx-auto col-lg-2">
-          <strong>item total: ${item.total}</strong>
-        </div>*/}
     </div>
   );
 };

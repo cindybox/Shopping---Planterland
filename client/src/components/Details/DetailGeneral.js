@@ -42,7 +42,7 @@ export const DetailGeneral = props => {
             from <strong>{company}</strong>
           </h4>
           <h4 className=" mt-3 mb-4">
-            Price{" "}
+            Price
             <strong>
               <span>$</span>
               {price}
@@ -51,7 +51,6 @@ export const DetailGeneral = props => {
           {/* product info*/}
           <p className="text-capitalize mt-3 mb-0">{description}</p>
           <p>
-            {" "}
             Material: <span> {material}</span>{" "}
           </p>
           <div className="d-flex justify-content-end">

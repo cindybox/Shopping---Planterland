@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ProductConsumer } from "../context";
-
 import { withRouter } from "react-router-dom";
 
 class Product extends React.Component {
@@ -37,7 +36,6 @@ class Product extends React.Component {
                       disabled={item.inCart ? true : false}
                       onClick={() => {
                         value.removeFromWishlist(item.pid);
-                        // value.openModal(item.pid);
                       }}
                     >
                       {this.props.inWishlist ? (
@@ -45,14 +43,6 @@ class Product extends React.Component {
                       ) : (
                         <i className="fas fa-cart-plus" />
                       )}
-
-                      {/* {item.inCart ? (
-                      <p className="text-text-capitalize mb-0" disabled>
-                        in Cart
-                      </p>
-                    ) : (
-                      <i className="fas fa-cart-plus" />
-                    )} */}
                     </button>
                   </div>
                 );
@@ -75,37 +65,8 @@ class Product extends React.Component {
   }
 }
 
-// Product.propTypes = {
-//   product: PropTypes.shape({
-//     pid: PropTypes.number,
-//     image: PropTypes.string,
-//     title: PropTypes.string,
-//     price: PropTypes.number
-//   }).isRequired
-// };
-
 const ProductWrapper = styled.div`
 
-
-/* .productImageContainer{
-  posistion:relative;
-}
-.productRemoveFromWL{
-  position:absolute;
-  background:rgba(0,0,0,0.6);
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  width:100%;
-  height:100%;
-  display:none;
-} */
-
-/* .productImageContainer:hover .productRemoveFromWL{
-  display: ${props => (props.inWishlist ? "block" : "none")}
-
-} */
 
   .card {
     background: var(--mainWhite) !important;
@@ -118,12 +79,6 @@ const ProductWrapper = styled.div`
     transition: all 0.3s linear;
   }
   &:hover {
-    /* .card {
-      box-shadow: ${props =>
-        props.inWishlist
-          ? "2px 2px 5px 0px rgba(0, 0, 0, 0.2);"
-          : "0px rgba(0, 0, 0, 0) "};
-    } */
     .card-footer {
       background: rgba(247, 247, 247);
     }
@@ -160,7 +115,6 @@ const ProductWrapper = styled.div`
     color:   ${props =>
       props.atWishlist ? "var(--mainBlue);" : "var(--mainWhite);"}
 
-  /* background-color: var(--mainBlue) !important; */
 `;
 
 export default withRouter(Product);

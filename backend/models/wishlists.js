@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-// const passportLocalMongoose = require("passport-local-mongoose");
-
 const wishlistSchema = new mongoose.Schema({
   id: Number,
   listname: String,

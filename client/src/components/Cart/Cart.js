@@ -12,7 +12,7 @@ class CartElement extends React.Component {
     this.props.navToWhite();
     this.props.setPathName();
 
-    this.props.value.loadCart();
+    // this.props.value.loadCart();
   };
   render() {
     const { cart, addTotal, isLoggedIn } = this.props.value;

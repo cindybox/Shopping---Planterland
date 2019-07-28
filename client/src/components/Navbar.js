@@ -8,15 +8,6 @@ class Navbar extends Component {
 
   toggleCollapse = () => {
     this.setState({ collapsed: !this.state.collapsed });
-    // let regex = new RegExp(/collapsed/);
-    // if (
-    //   regex.test(e.target.className) ||
-    //   regex.test(e.target.parentNode.className)
-    // ) {
-    //   this.setState({ collapsed: false });
-    // } else {
-    //   this.setState({ collapsed: true });
-    // }
   };
 
   render() {
@@ -25,7 +16,6 @@ class Navbar extends Component {
         {value => {
           const { isLoggedIn, currentUser, logout } = value;
           const { username } = currentUser;
-
           return (
             <NavWrapper
               id="navwrapper"
@@ -51,8 +41,6 @@ class Navbar extends Component {
                   aria-label="Toggle navigation"
                   onClick={this.toggleCollapse}
                 >
-                  {/*  <span className="navbar-toggler-icon" />*/}
-
                   <span>
                     {this.state.collapsed ? (
                       <i class="fas fa-times"></i>
@@ -89,7 +77,6 @@ class Navbar extends Component {
                           Hi&ensp;<span>{username}</span>
                         </li>
                         <li className="d-none d-md-inline-block d-lg-none">
-                          {" "}
                           &emsp;
                         </li>
                         <li className="nav-item ml-lg-5">
@@ -106,7 +93,6 @@ class Navbar extends Component {
                           </Link>
                         </li>
                         <li className="d-none d-md-inline-block d-lg-none">
-                          {" "}
                           &emsp;
                         </li>
                         <li className="nav-item ml-lg-5">
@@ -139,7 +125,6 @@ const NavWrapper = styled.nav`
   font-weight: bold;
   .nav-link:hover {
     color: var(--darkGreen) !important;
-    /* border-bottom: 4px var(--mainNavy) solid; */
   }
   .nav-link {
     color: var(--mainNavy) !important;
