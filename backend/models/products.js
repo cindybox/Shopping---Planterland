@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+// const passportLocalMongoose = require("passport-local-mongoose");
+
 const productSchema = new mongoose.Schema({
   pid: {
     type: Number,

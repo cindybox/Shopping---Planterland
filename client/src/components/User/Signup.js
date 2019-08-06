@@ -1,3 +1,4 @@
+//jshint esversion:6
 import React, { Component } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
@@ -174,7 +175,7 @@ class SignupPage extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div>{" "}
       </div>
     );
   }

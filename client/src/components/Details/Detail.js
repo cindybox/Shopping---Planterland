@@ -2,6 +2,7 @@ import React from "react";
 import { ProductConsumer } from "../../context";
 import styled from "styled-components";
 import { DetailSpecs } from "./DetailSpecs.js";
+// import { SpecSelected } from "./SpecSelected.js";
 import { DetailGeneral } from "./DetailGeneral.js";
 import DetailProjectImg from "./DetailProjectImg.js";
 import { ToastContainer } from "react-toastify";
@@ -51,6 +52,8 @@ class Detail extends React.Component {
 
 const DetailWrapper = styled.div`
   .text-moreinfo {
+    /* border-color: var(--darkGreen) !important;
+    border-width: 2px !important; */
     font-size: 1.1rem;
     letter-spacing: 0.08rem;
   }

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+// import classNames from "classnames/bind";
+// import styles from "./submit-button.css";
 import { withRouter } from "react-router-dom";
 import ButtonContainer from "../../styled/ButtonContainer";
 import { ToastContainer, toast } from "react-toastify";
@@ -132,6 +134,7 @@ export const DetailSpecs = withRouter(props => {
           <div className="col-12 col-md-6 mx-auto">
             <div className="row mb-2  my-auto  ">
               <div className="col-8 ml-auto d-flex align-items-center">
+                {" "}
                 <span>Price:&emsp; </span>
                 <div className="d-flex align-items-center justify-content-center mx-auto">
                   <span>
@@ -171,6 +174,7 @@ export const DetailSpecs = withRouter(props => {
           </div>
         </div>
         <div className="row mt-2 mx-auto  justify-content-end">
+          {/*<Link to="/cart">*/}
           <ButtonContainer
             className="px-4 py-2 font-weight-bold"
             isGreen="true"
@@ -193,6 +197,7 @@ export const DetailSpecs = withRouter(props => {
           >
             Add to Cart
           </ButtonContainer>
+          {/*</Link> */}
         </div>
       </SpecWrapper>
     </div>
@@ -217,6 +222,9 @@ const SpecWrapper = styled.div`
     cursor: pointer !important;
     color: var(--lightGreen);
     transition: color 0.15s linear;
+    /* &:before {
+    visibility: visible;
+  } */
   }
   .specs-active {
     color: var(--lightGreen);

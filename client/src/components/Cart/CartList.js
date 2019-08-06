@@ -3,6 +3,8 @@ import { CartItem } from "./CartItem.js";
 
 export const CartList = ({ value }) => {
   const { cart } = value;
+  console.log("this is cart");
+  console.log(cart);
   return (
     <div className="containerfluid text-center d-lg-block">
       {cart.map(i => {

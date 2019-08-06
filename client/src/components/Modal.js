@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ProductConsumer } from "../context";
+
 import ButtonContainer from "../styled/ButtonContainer";
 import classNames from "classnames";
 
@@ -158,7 +159,10 @@ const ModalContainer = styled.div`
   .modalcontainer {
     background: var(--mainWhite) !important;
   }
-
+  /* .modal-img,
+  .modal-list {
+    background: var(--mainWhite) !important;
+  } */
   .listbutton {
     position: relative;
   }
@@ -194,4 +198,7 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  /* #modal {
+    background: var(--mainWhite);
+  } */
 `;

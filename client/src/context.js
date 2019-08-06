@@ -69,10 +69,6 @@ class ProductProvider extends React.Component {
               //initialize currentWishlist
               currentWishlist: res.data.wishlists[0],
               currentMessage: `Welcome ${res.data.username}`
-            },
-            () => {
-              this.loadWishlist();
-              this.loadCart();
             } //initialize cart
           );
           toast(`welcome ${this.state.loginUsername}`);
@@ -335,21 +331,20 @@ class ProductProvider extends React.Component {
     }
   };
 
-  //make sure that the user is logged in
+  //initial load
   loadWishlist = () => {
-    if (this.state.currentUser) {
-      console.log(this.state.currentUser);
-      if (this.state.currentUser.wishlists) {
-        if (this.state.currentUser.wishlists.length > 0) {
-          let currentListId = this.state.currentUser.wishlists[0]._id;
-          axios
-            .get(
-              `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`
-            )
-            .then(res => this.setState({ currentWishlist: res.data }))
-            .catch(err => console.log(err));
-        }
-      }
+    let currentListId;
+    if (this.state.currentUser.wishlists.length > 0) {
+      currentListId = this.state.currentUser.wishlists[0]._id;
+    }
+
+    if (currentListId) {
+      axios
+        .get(
+          `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`
+        )
+        .then(res => this.setState({ currentWishlist: res.data }))
+        .catch(err => console.log(err));
     }
   };
   handleNewList = e => {

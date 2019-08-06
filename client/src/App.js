@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+
 import "./css/App.css";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
@@ -13,17 +13,21 @@ import Default from "./components/Default";
 import SearchResult from "./components/Search/SearchResult";
 import axios from "axios";
 import { toast } from "react-toastify";
-const Modal = React.lazy(() => import("./components/Modal"));
+import "react-toastify/dist/ReactToastify.css";
 
+import { withRouter } from "react-router-dom";
+const Modal = React.lazy(() => import("./components/Modal"));
 class AppPage extends React.Component {
   state = { pathname: "", productList: [], searchTerm: "" };
 
   componentDidMount = () => {
+    //the first time the page loads, setPathName
     this.setPathName();
   };
   setPathName = () => {
     this.setState({ pathname: this.props.location.pathname.slice(1) });
   };
+
   updateTerm = e => {
     this.setState({
       searchTerm: e.target.value.toLowerCase()
@@ -52,16 +56,21 @@ class AppPage extends React.Component {
       toast("There is no product that matches this search criteria");
     }
   };
+  //get all the products
 
   navToWhite = () => {
     document.getElementById("navwrapper").style.cssText =
       "background:var(--mainWhite) !important;";
   };
-
   render() {
+    if (process.env) {
+      console.log(process.env.PORT);
+    }
+
     return (
       <React.Fragment>
         <Navbar pathname={this.state.pathname} />
+
         <Switch>
           <Route
             exact

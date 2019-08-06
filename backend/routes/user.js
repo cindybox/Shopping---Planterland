@@ -1,13 +1,15 @@
-const router = require("express").Router(),
-  mongoose = require("mongoose"),
-  middleware = require("../middleware/index"),
-  passport = require("passport"),
-  Product = require("../models/products"),
-  User = require("../models/users"),
-  Wishlist = require("../models/wishlists");
+const router = require("express").Router();
+const mongoose = require("mongoose");
+
+const Product = require("../models/products");
+const User = require("../models/users");
+const Wishlist = require("../models/wishlists");
+//the only verification is if user is loggin
+const middleware = require("../middleware/index");
+const passport = require("passport");
 
 // ======================================WISHLIST ==========================//
-
+//add back isLoggedIn
 router.get("/api/user/:id/wishlists", function(req, res) {
   User.findById(req.params.id, function(err, foundUser) {
     if (err) {
@@ -93,6 +95,8 @@ router.get("/api/user/:id/wishlists/:w_id/update", function(req, res) {
 
 //remove a product from selected wishlist
 router.post("/api/user/:id/wishlists/:w_id/update", function(req, res) {
+  //take the _id ,  find the product in WishList and remove
+  //also need to remove the product id it from user
   Wishlist.findById(req.params.w_id, function(err, foundList) {
     if (err) {
       res.json(err);
@@ -184,6 +188,21 @@ router.post("/api/user/signup", function(req, res) {
     cart: [],
     admincode: req.body.admincode
   });
+
+  // Wishlist.create({ listname: "startlist", products: [] }, function(
+  //   err,
+  //   newlist
+  // ) {
+  //   if (err) {
+  //     res.json(err.message);
+  //   } else {
+  //     newUser.wishlists.push(newlist);
+  //   }
+  // });
+
+  //Because user schema is using a plugin, by using register(comes from passport local mongoose. It create a
+  //new user, but also integrate authentification with the password and username.
+  //as an authentification strategy. )
   User.register(newUser, req.body.password, function(err, user) {
     if (err) {
       res.json(err.message);
@@ -199,12 +218,16 @@ router.post("/api/user/login", passport.authenticate("local"), function(
   req,
   res
 ) {
+  // console.log(req.user);
   res.json(req.user);
+  //if authentification process is successful. user will have req.user property
 });
 
+//
 router.get("/api/user/login", function(req, res) {
   res.json("success");
 });
+//show the new product form, user has to log in as an admin
 
 router.get("/api/user/logout", function(req, res) {
   req.logout();

@@ -7,7 +7,7 @@ export const CartColumn = props => {
         <div className="col-10 ml-5 my-5 text-left">
           <h5 className="text-muted">
             There are a total of <strong>{props.itemQuantity}</strong> planters
-            in your cart
+            in your cart{" "}
           </h5>
         </div>
       </div>
