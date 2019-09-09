@@ -1,5 +1,4 @@
 import React from "react";
-import Title from "../Title";
 
 import { CartColumn } from "./CartColumn";
 import { EmptyCart } from "./EmptyCart";
@@ -17,7 +16,7 @@ class CartElement extends React.Component {
     this.props.value.loadCart();
   };
   render() {
-    const { cart, addTotal, isLoggedIn } = this.props.value;
+    const { cart, isLoggedIn } = this.props.value;
 
     if (!this.state.isLoaded) {
       this.setState({ isLoaded: true });

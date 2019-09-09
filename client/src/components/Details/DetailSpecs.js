@@ -180,11 +180,11 @@ export const DetailSpecs = withRouter(props => {
             isGreen="true"
             onClick={() => {
               if (isLoggedIn) {
-                if (selectedDimension == "" && selectedFinish == "") {
+                if (selectedDimension === "" && selectedFinish === "") {
                   toast("Please select specs above");
-                } else if (selectedDimension == "") {
+                } else if (selectedDimension === "") {
                   toast("Please select a size");
-                } else if (selectedFinish == "") {
+                } else if (selectedFinish === "") {
                   toast("Please select a finish");
                 } else {
                   value.addToCart(pid);

@@ -39,7 +39,7 @@ class AppPage extends React.Component {
     let term = this.state.searchTerm.toLowerCase();
     let products = await axios.get("/api");
     let foundProducts = [];
-    let foundProduct = products.data.forEach(product => {
+    products.data.forEach(product => {
       if (
         product.title.toLowerCase().includes(term) ||
         product.company.toLowerCase().includes(term) ||

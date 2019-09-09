@@ -3,13 +3,7 @@ import { Link } from "react-router-dom";
 import DropDown from "../../styled/DropDown";
 
 export const CartItem = ({ item, value }) => {
-  let {
-    productName,
-    image,
-    selectedPrice,
-    selectedSpecs,
-    selectedCount
-  } = item;
+  let { productName, image, selectedPrice, selectedCount } = item;
   return (
     <div className="row my-1 d-flex text-capitalize align-items-center">
       <div className="col-10 mx-auto col-lg-2">

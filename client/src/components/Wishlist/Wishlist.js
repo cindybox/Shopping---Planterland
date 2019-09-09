@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Product from "../Product";
 import { ProductConsumer } from "../../context";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { EmptyWishlist } from "./EmptyWishlist";
 import LoginRedirect from "../User/LoginRedirect";
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const DropDown = ({ item, value, specType }) => {
-  const { products, selectedSpecType } = value;
+  const { products } = value;
   const dim = [];
   const fin = [];
   let foundProduct = products.find(p => p._id === item._id);
@@ -38,16 +38,8 @@ const DropDown = ({ item, value, specType }) => {
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {specType === "dimensions"
-            ? dim.map(d => (
-                <a href="#" className="dropdown-item">
-                  {d}
-                </a>
-              ))
-            : fin.map(f => (
-                <a href="#" className="dropdown-item">
-                  {f}
-                </a>
-              ))}
+            ? dim.map(d => <p className="dropdown-item">{d}</p>)
+            : fin.map(f => <p className="dropdown-item">{f}</p>)}
         </div>
       </div>
     </DropDownWrapper>

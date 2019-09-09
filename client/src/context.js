@@ -142,6 +142,7 @@ class ProductProvider extends React.Component {
         if (i && i.length > 0) {
           return i.find(k => k.pid === pid);
         }
+        return null;
       })
     ) {
       return;
@@ -413,7 +414,9 @@ class ProductProvider extends React.Component {
     let currentListId = this.state.currentWishlist._id;
     axios
       .post(
-        `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}/update`,
+        `/api/user/${
+          this.state.currentUser._id
+        }/wishlists/${currentListId}/update`,
 
         { productId: pId }
       )

@@ -19,7 +19,7 @@ export default class DetailProjectImg extends Component {
                 data-target="#carouselExampleIndicators"
                 data-slide-to={index.toString()}
                 class={classNames({ active: this.state.isClicked[index] })}
-              ></li>
+              />
             ))}
           </ol>
           <div class="carousel-inner">
@@ -33,7 +33,7 @@ export default class DetailProjectImg extends Component {
                   style={{ width: "100%" }}
                   class="d-block w-100"
                   src={item}
-                  alt={`slide number\: ${index + 1}`}
+                  alt={`slide number: ${index + 1}`}
                 />
               </div>
             ))}
@@ -44,7 +44,7 @@ export default class DetailProjectImg extends Component {
             role="button"
             data-slide="prev"
           >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true" />
             <span class="sr-only">Previous</span>
           </a>
           <a
@@ -53,7 +53,7 @@ export default class DetailProjectImg extends Component {
             role="button"
             data-slide="next"
           >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="carousel-control-next-icon" aria-hidden="true" />
             <span class="sr-only">Next</span>
           </a>
         </div>

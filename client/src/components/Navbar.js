@@ -24,7 +24,7 @@ class Navbar extends Component {
               pathname={this.props.pathname}
             >
               <nav className="navbar navbar-expand-lg navbar-light">
-                <Link className="nav-brand" to="/" className="ml-5 my-2">
+                <Link className="nav-brand ml-5 my-2" to="/">
                   <img
                     src={process.env.PUBLIC_URL + "/image/logo.png"}
                     alt="store"
