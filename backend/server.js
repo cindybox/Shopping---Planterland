@@ -9,6 +9,7 @@ const Product = require("./models/products"),
   passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy,
   expressSession = require("express-session");
+config = require("config");
 
 //need dot env to be able to link to the env file
 require("dotenv").config();
@@ -24,8 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 seedDB();
 
 //connect to MongoDB
-let url = process.env.ATLASMONGOOSE;
-console.log(process.env.ATLASMONGOOSE);
+let url = config.get("ATLASMONGOOSE");
 url = url + "productDB";
 mongoose.connect(url, {
   useNewUrlParser: true,
