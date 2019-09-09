@@ -1,3 +1,4 @@
 {
-  "ATLASMONGOOSE": "mongodb+srv://cindybox:txl-330@cluster0-uhpsx.mongodb.net/"
+  "ATLASMONGOOSE": "mongodb+srv://cindybox:txl-330@cluster0-uhpsx.mongodb.net/",
+  "REACT_APP_PAYPALID": "AfgvxXPW10uKKvYGyq2QGuXVhdpRkuS7UVkS5vf8ZuM0c0V24yfl7Z24I0g8DSVnCLDmpXfoY4mvoSfQ"
 }
