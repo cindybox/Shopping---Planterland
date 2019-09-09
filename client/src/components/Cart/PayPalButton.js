@@ -1,5 +1,6 @@
 import React from "react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
+require("dotenv").config();
 
 export default class PayPalButton extends React.Component {
   render() {
