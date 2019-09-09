@@ -32,7 +32,8 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-
+# config
+default.json
 
 # dotenv environment variables file
 .env
