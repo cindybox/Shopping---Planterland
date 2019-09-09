@@ -30,7 +30,6 @@ export default class PayPalButton extends React.Component {
     // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
 
     const client = {
-      console.log(process.env.REACT_APP_PAYPALID);
       sandbox: process.env.REACT_APP_PAYPALID,
       production: "YOUR-PRODUCTION-APP-ID"
     };
