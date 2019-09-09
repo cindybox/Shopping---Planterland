@@ -151,19 +151,19 @@ class SignupPage extends Component {
                       />
                     </div>
                   </div>
+                  {/*      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>Admin Code</label>
+          <input
+            class="form-control"
+            type="text"
+            name="admincode"
+            placeholder="admin code"
+            onChange={this.onSignupAdmin}
+          />
+        </div>
+      </div>*/}
 
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <label>Admin Code</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="admincode"
-                        placeholder="admin code"
-                        onChange={this.onSignupAdmin}
-                      />
-                    </div>
-                  </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <button class="btn btn-camp btn-lg btn-block">

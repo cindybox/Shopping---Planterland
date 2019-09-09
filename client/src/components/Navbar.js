@@ -8,15 +8,6 @@ class Navbar extends Component {
 
   toggleCollapse = () => {
     this.setState({ collapsed: !this.state.collapsed });
-    // let regex = new RegExp(/collapsed/);
-    // if (
-    //   regex.test(e.target.className) ||
-    //   regex.test(e.target.parentNode.className)
-    // ) {
-    //   this.setState({ collapsed: false });
-    // } else {
-    //   this.setState({ collapsed: true });
-    // }
   };
 
   render() {
@@ -51,13 +42,11 @@ class Navbar extends Component {
                   aria-label="Toggle navigation"
                   onClick={this.toggleCollapse}
                 >
-                  {/*  <span className="navbar-toggler-icon" />*/}
-
                   <span>
                     {this.state.collapsed ? (
-                      <i class="fas fa-times"></i>
+                      <i class="fas fa-times" />
                     ) : (
-                      <i class="fas fa-bars"></i>
+                      <i class="fas fa-bars" />
                     )}
                   </span>
                 </button>
@@ -77,10 +66,9 @@ class Navbar extends Component {
                     </li>
 
                     {isLoggedIn ? (
-                      <div className="d-block d-md-flex text-center justify-content-center">
-                        {" "}
+                      <div className="d-block d-md-flex text-center justify-content-center align-items-center">
                         <li
-                          className="nav-item ml-lg-5 "
+                          className="nav-item ml-lg-5 align-items-center"
                           style={{
                             color: "rgb(47, 172, 226)",
                             fontSize: "1.5rem"
@@ -89,7 +77,6 @@ class Navbar extends Component {
                           Hi&ensp;<span>{username}</span>
                         </li>
                         <li className="d-none d-md-inline-block d-lg-none">
-                          {" "}
                           &emsp;
                         </li>
                         <li className="nav-item ml-lg-5">

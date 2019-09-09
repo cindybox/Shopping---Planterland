@@ -1,11 +1,13 @@
 import React from "react";
 import Title from "../Title";
+
 import { CartColumn } from "./CartColumn";
 import { EmptyCart } from "./EmptyCart";
 import { ProductConsumer } from "../../context";
 import { CartList } from "./CartList";
 import { CartTotal } from "./CartTotal";
 import LoginRedirect from "../User/LoginRedirect";
+
 class CartElement extends React.Component {
   state = { isLoaded: false };
   componentDidMount = () => {
@@ -25,7 +27,7 @@ class CartElement extends React.Component {
         <React.Fragment>
           <CartColumn itemQuantity={cart.length} />
           <CartList value={this.props.value} />
-          <CartTotal value={this.props.value} />
+          <CartTotal value={this.props.value} history={this.props.history} />
         </React.Fragment>
       ) : (
         <EmptyCart />
