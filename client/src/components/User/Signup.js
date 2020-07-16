@@ -13,59 +13,59 @@ class SignupPage extends Component {
     lastname: "",
     email: "",
     admin: "",
-    signupSuccess: false
+    signupSuccess: false,
   };
   componentDidMount = () => {
     this.props.setPathName();
   };
-  onSignupName = e => {
+  onSignupName = (e) => {
     this.setState({
-      username: e.target.value
+      username: e.target.value,
     });
   };
-  onSignupPassword = e => {
+  onSignupPassword = (e) => {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   };
-  onSignupFirstname = e => {
+  onSignupFirstname = (e) => {
     this.setState({
-      firstname: e.target.value
+      firstname: e.target.value,
     });
   };
-  onSignupLastname = e => {
+  onSignupLastname = (e) => {
     this.setState({
-      lastname: e.target.value
-    });
-  };
-
-  onSignupEmail = e => {
-    this.setState({
-      email: e.target.value
+      lastname: e.target.value,
     });
   };
 
-  onSignupAdmin = e => {
+  onSignupEmail = (e) => {
     this.setState({
-      admin: e.target.value
+      email: e.target.value,
     });
   };
 
-  onFormSubmit = e => {
+  onSignupAdmin = (e) => {
+    this.setState({
+      admin: e.target.value,
+    });
+  };
+
+  onFormSubmit = (e) => {
     e.preventDefault();
     const newUser = {
       username: this.state.username,
       password: this.state.password,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
-      email: this.state.email
+      email: this.state.email,
     };
     axios
-      .post("http://localhost:5000/api/user/signup", newUser)
-      .then(res => {
+      .post("/api/user/signup", newUser)
+      .then((res) => {
         if (res.data) {
           this.setState({
-            signupSuccess: true
+            signupSuccess: true,
           });
           console.log("register success, user name:" + res.data);
           toast(
@@ -74,7 +74,7 @@ class SignupPage extends Component {
           setTimeout(() => this.props.history.push("/"), 1500);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         toast(`Opps, Something is Wrong\n${err.message}`);
       });
   };
