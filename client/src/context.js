@@ -75,6 +75,8 @@ class ProductProvider extends React.Component {
         }
       })
       .catch((err) => {
+        console.log(this.state.loginUsername);
+        console.log(this.state.loginPassword);
         toast(`Oops Something Is Wrong, Try Again\n ${err.message}`);
       });
   };
