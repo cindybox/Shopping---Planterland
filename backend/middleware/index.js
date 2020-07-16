@@ -1,9 +1,7 @@
-const // Garden = require("../models/gardens"),
-  //   Comment = require("../models/comments"),
-  middlewareObj = {};
+const middlewareObj = {};
 // const flash = require("connect-flash");
 
-middlewareObj.isLoggedIn = function(req, res, next) {
+middlewareObj.isLoggedIn = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
@@ -12,4 +10,3 @@ middlewareObj.isLoggedIn = function(req, res, next) {
 };
 
 module.exports = middlewareObj;
-//why not export default?
