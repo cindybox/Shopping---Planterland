@@ -26,11 +26,11 @@ export const CartTotal = ({ value, history }) => {
               <span className="text-title">Total</span>
               <strong> ${cartTotal}</strong>
             </h5>
-            <PayPalButton
+            {/* <PayPalButton
               total={cartTotal}
               clearCart={clearCart}
               history={history}
-            />
+            /> */}
           </div>
         </div>
       </div>
