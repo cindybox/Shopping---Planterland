@@ -30,7 +30,7 @@ class ProductProvider extends React.Component {
     cart: [],
     cartSubtotal: 0,
     cartTax: 0,
-    cartTotal: 0
+    cartTotal: 0,
   };
 
   //once the page loads, load all products from data
@@ -40,26 +40,26 @@ class ProductProvider extends React.Component {
   // ====================== BANNER FUNCTIONS =======================//
 
   // ====================== LOGIN PAGE FUNCTIONS =======================//
-  onLoginName = e => {
+  onLoginName = (e) => {
     this.setState({
-      loginUsername: e.target.value
+      loginUsername: e.target.value,
     });
   };
-  onLoginPassword = e => {
+  onLoginPassword = (e) => {
     this.setState({
-      loginPassword: e.target.value
+      loginPassword: e.target.value,
     });
   };
-  onLoginSubmit = e => {
+  onLoginSubmit = (e) => {
     console.log("submit user");
     e.preventDefault();
     //on submital, send to server for authentification check
     axios
       .post("/api/user/login", {
         username: this.state.loginUsername,
-        password: this.state.loginPassword
+        password: this.state.loginPassword,
       })
-      .then(res => {
+      .then((res) => {
         if (res.data) {
           this.setState(
             {
@@ -68,13 +68,13 @@ class ProductProvider extends React.Component {
               currentUser: res.data,
               //initialize currentWishlist
               currentWishlist: res.data.wishlists[0],
-              currentMessage: `Welcome ${res.data.username}`
+              currentMessage: `Welcome ${res.data.username}`,
             } //initialize cart
           );
           toast(`welcome ${this.state.loginUsername}`);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         toast(`Oops Something Is Wrong, Try Again\n ${err.message}`);
       });
   };
@@ -82,7 +82,7 @@ class ProductProvider extends React.Component {
   logout = () => {
     axios
       .get("/api/user/logout")
-      .then(res => {
+      .then((res) => {
         this.setState({
           isLoggedIn: false,
           currentWishlist: {},
@@ -94,10 +94,10 @@ class ProductProvider extends React.Component {
           loginPassword: "",
           currentUser: {},
           modalOpen: false,
-          cart: []
+          cart: [],
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
   // ====================== PRODUCT PAGE FUNCTIONS =======================//
   //initialize product data
@@ -107,23 +107,23 @@ class ProductProvider extends React.Component {
 
     let products = await axios.get("/api");
 
-    products.data.forEach(item => {
+    products.data.forEach((item) => {
       const singleItem = { ...item };
       tempProducts = [...tempProducts, singleItem];
     });
     this.setState({
       products: tempProducts,
-      detailedproducts: tempProducts[0]
+      detailedproducts: tempProducts[0],
     });
   };
 
   //find the data of the product selected
-  getItem = id => {
-    return this.state.products.find(item => id === item.pid);
+  getItem = (id) => {
+    return this.state.products.find((item) => id === item.pid);
   };
   // ======================DETAIL PAGE FUNCTIONS =======================//
   //load detail after at page detail
-  loadDetailList = pid => {
+  loadDetailList = (pid) => {
     let selectedProduct = this.getItem(pid);
     let selectedList = {
       _id: selectedProduct._id,
@@ -133,14 +133,14 @@ class ProductProvider extends React.Component {
       selectedPrice: 0,
       selectedSpecs: { dimension: "", finish: "" },
       selectedCount: 0,
-      selectedTotal: 0
+      selectedTotal: 0,
     };
 
     //if current product is already in the tempSelected
     if (
-      this.state.tempSelected.find(i => {
+      this.state.tempSelected.find((i) => {
         if (i && i.length > 0) {
-          return i.find(k => k.pid === pid);
+          return i.find((k) => k.pid === pid);
         }
         return null;
       })
@@ -150,12 +150,12 @@ class ProductProvider extends React.Component {
       //push a set of product info into tempSelected
       let currentTempSelected = [...this.state.tempSelected, selectedList];
       this.setState({
-        tempSelected: currentTempSelected
+        tempSelected: currentTempSelected,
       });
     }
   };
 
-  handleSelection = e => {
+  handleSelection = (e) => {
     let updatedType = e.target.innerText.toLowerCase().trim();
     let tempSelectedCopy = _.clone(this.state.tempSelected);
 
@@ -163,14 +163,14 @@ class ProductProvider extends React.Component {
 
     this.setState({
       tempSelected: tempSelectedCopy,
-      selectedSpecType: updatedType
+      selectedSpecType: updatedType,
     });
   };
 
-  handleDetail = id => {
+  handleDetail = (id) => {
     const matchproduct = this.getItem(id);
     this.setState({
-      detailedproducts: matchproduct
+      detailedproducts: matchproduct,
     });
   };
 
@@ -178,7 +178,7 @@ class ProductProvider extends React.Component {
     let id = this.state.detailedproducts.pid;
     let tempSelectedCopy = _.clone(this.state.tempSelected);
 
-    let foundProduct = tempSelectedCopy.find(s => s.pid === id);
+    let foundProduct = tempSelectedCopy.find((s) => s.pid === id);
     // let index = tempSelectedCopy.indexOf(foundProduct);
     // let updatedProduct = tempSelectedCopy[index];
     if (foundProduct.selectedCount < 20) {
@@ -187,7 +187,7 @@ class ProductProvider extends React.Component {
     //check if temp copy is updated this way, which is YES
     // console.log(tempSelectedCopy);
     this.setState({
-      tempSelected: tempSelectedCopy
+      tempSelected: tempSelectedCopy,
     });
   };
 
@@ -195,17 +195,17 @@ class ProductProvider extends React.Component {
     let id = this.state.detailedproducts.pid;
     let tempSelectedCopy = _.clone(this.state.tempSelected);
 
-    let foundProduct = tempSelectedCopy.find(s => s.pid === id);
+    let foundProduct = tempSelectedCopy.find((s) => s.pid === id);
 
     if (foundProduct.selectedCount > 0) {
       foundProduct.selectedCount--;
     }
     this.setState({
-      tempSelected: tempSelectedCopy
+      tempSelected: tempSelectedCopy,
     });
   };
 
-  addToDimension = e => {
+  addToDimension = (e) => {
     let pid = this.state.detailedproducts.pid;
 
     let updatedDimension = e.target.innerText.toLowerCase();
@@ -214,7 +214,7 @@ class ProductProvider extends React.Component {
     let tempSelectedCopy = _.clone(this.state.tempSelected);
 
     //found item is referenced, so update the found item will update the parent array as well
-    let tempFound = tempSelectedCopy.find(s => s.pid === pid);
+    let tempFound = tempSelectedCopy.find((s) => s.pid === pid);
 
     if (tempFound) {
       // if (tempFound.selectedSpecs.dimension) {
@@ -231,7 +231,7 @@ class ProductProvider extends React.Component {
       {
         tempSelected: tempSelectedCopy,
         specsSelected: updatedDimension,
-        selectedSpecType: "dimensions"
+        selectedSpecType: "dimensions",
       },
 
       () => {
@@ -242,14 +242,14 @@ class ProductProvider extends React.Component {
     );
   };
 
-  addToFinish = e => {
+  addToFinish = (e) => {
     let id = this.state.detailedproducts.pid;
     let updatedFinish = e.target.innerText.toLowerCase();
     let tempSelectedCopy = _.clone(this.state.tempSelected);
     //in the list, find item i.pid === id, id is passed to the function using detailedproduct
 
     //you will be able to find it, cuz it is pushed to temp once you are at the detail page
-    let tempFound = tempSelectedCopy.find(s => s.pid === id);
+    let tempFound = tempSelectedCopy.find((s) => s.pid === id);
     //if this product is already added to the tempselected, replace the value. Otherwise,
     if (tempFound) {
       tempFound.selectedSpecs.finish = updatedFinish;
@@ -263,7 +263,7 @@ class ProductProvider extends React.Component {
       {
         selectedSpecType: "finishes/colors",
         specsSelected: updatedFinish,
-        tempSelected: tempSelectedCopy
+        tempSelected: tempSelectedCopy,
       },
 
       () => {
@@ -280,12 +280,12 @@ class ProductProvider extends React.Component {
     let specs = this.state.detailedproducts.specs;
     let tempSelectedCopy = _.clone(this.state.tempSelected);
 
-    let found = tempSelectedCopy.find(s => s.pid === id);
+    let found = tempSelectedCopy.find((s) => s.pid === id);
 
     let { dimension, finish } = found.selectedSpecs;
     if (dimension !== "" && finish !== "") {
       let priceFound = specs.find(
-        s =>
+        (s) =>
           s.dimension.toLowerCase() === dimension &&
           s.finish.toLowerCase() === finish
       ).price;
@@ -294,21 +294,21 @@ class ProductProvider extends React.Component {
 
       found.selectedPrice = priceFound;
       this.setState({
-        tempSelected: tempSelectedCopy
+        tempSelected: tempSelectedCopy,
       });
     }
   };
 
   // ====================== MODAL PAGE FUNCTIONS =======================//
   //opent the modal to select wishlist to add to
-  openModal = id => {
+  openModal = (id) => {
     if (!this.state.isLoggedIn) {
       toast("Please Log In First");
     } else {
       this.setState({ modalOpen: true });
     }
   };
-  closeModal = e => {
+  closeModal = (e) => {
     if (e) {
       if (e.target.childNodes.length > 0) {
         if (this.state.modalOpen && e.target.childNodes[0].id) {
@@ -320,11 +320,11 @@ class ProductProvider extends React.Component {
 
   // ====================== HANDLE WISHLIST FUNCTIONS =======================//
   //pass a list name, get the list id
-  getListId = name => {
+  getListId = (name) => {
     //find the id of the list in User db
     if (this.state.currentUser.wishlists) {
       let foundList = this.state.currentUser.wishlists.find(
-        w => w.listname === name
+        (w) => w.listname === name
       );
       if (foundList) {
         return foundList._id;
@@ -335,7 +335,10 @@ class ProductProvider extends React.Component {
   //initial load
   loadWishlist = () => {
     let currentListId;
-    if (this.state.currentUser.wishlists.length > 0) {
+    if (
+      this.state.currentUser.wishlists &&
+      this.state.currentUser.wishlists.length > 0
+    ) {
       currentListId = this.state.currentUser.wishlists[0]._id;
     }
 
@@ -344,24 +347,24 @@ class ProductProvider extends React.Component {
         .get(
           `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`
         )
-        .then(res => this.setState({ currentWishlist: res.data }))
-        .catch(err => console.log(err));
+        .then((res) => this.setState({ currentWishlist: res.data }))
+        .catch((err) => console.log(err));
     }
   };
-  handleNewList = e => {
+  handleNewList = (e) => {
     this.setState({ newListName: e.target.value });
   };
 
-  createNewList = e => {
+  createNewList = (e) => {
     e.preventDefault();
     let newListName = this.state.newListName;
     const userId = this.state.currentUser._id;
 
     axios
       .post("/api/user/" + userId + "/wishlists", {
-        listname: newListName
+        listname: newListName,
       })
-      .then(res => {
+      .then((res) => {
         //the updated wishlists for the user
         console.log(res.data);
         let tempUser = _.clone(this.state.currentUser);
@@ -372,11 +375,11 @@ class ProductProvider extends React.Component {
       })
 
       //should send the a list of wishlist names of the users including the newly added one
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   //add product to selected wishlist
-  addtoWishlist = e => {
+  addtoWishlist = (e) => {
     //take corresponding product info from selectedTemp, and push to the cart database
 
     let pId = this.state.detailedproducts.pid;
@@ -393,42 +396,40 @@ class ProductProvider extends React.Component {
         `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`,
         { productId: pId }
       )
-      .then(res => this.setState({ currentWishlist: res.data })) //should send the updatedlist with newly added product
-      .catch(err => console.log(err));
+      .then((res) => this.setState({ currentWishlist: res.data })) //should send the updatedlist with newly added product
+      .catch((err) => console.log(err));
     //should contain all products in products
   };
 
-  changeCurrentList = e => {
+  changeCurrentList = (e) => {
     let currentListName = e.target.innerText.trim();
     let currentListId = this.getListId(currentListName);
 
     axios
       .get(`/api/user/${this.state.currentUser._id}/wishlists/${currentListId}`)
-      .then(res => this.setState({ currentWishlist: res.data })) //should send the updatedlist with newly added product
-      .catch(err => console.log(err));
+      .then((res) => this.setState({ currentWishlist: res.data })) //should send the updatedlist with newly added product
+      .catch((err) => console.log(err));
   };
 
-  removeFromWishlist = e => {
+  removeFromWishlist = (e) => {
     //to be updated
     let pId = this.state.detailedproducts.pid;
     let currentListId = this.state.currentWishlist._id;
     axios
       .post(
-        `/api/user/${
-          this.state.currentUser._id
-        }/wishlists/${currentListId}/update`,
+        `/api/user/${this.state.currentUser._id}/wishlists/${currentListId}/update`,
 
         { productId: pId }
       )
-      .then(res => this.setState({ currentWishlist: res.data }))
-      .catch(err => console.log(err));
+      .then((res) => this.setState({ currentWishlist: res.data }))
+      .catch((err) => console.log(err));
   };
 
   // ====================== CART PAGE =======================//
   loadCart = () => {
     axios
       .get(`/api/user/${this.state.currentUser._id}/cart`)
-      .then(res => {
+      .then((res) => {
         if (res.data[0].selectedCount) {
           this.setState({ cart: res.data }, () => {
             this.addTotal();
@@ -437,25 +438,25 @@ class ProductProvider extends React.Component {
           console.log(res.data);
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   //find the product, attach temp specs, and push into the cart of the user
   //send back the updated user.cart
 
   //send all relevant data to api to update server: selectedSpecs, selectedPrice, selectedCount, selectedTotal???
-  addToCart = pid => {
+  addToCart = (pid) => {
     let id = this.getItem(pid)._id;
     //check if selected product is already in cart
     // console.log(this.state.tempSelected);
 
-    if (this.state.cart.find(p => p._id === id)) {
+    if (this.state.cart.find((p) => p._id === id)) {
       console.log("this item already in cart");
       toast("This Item is Already In Cart");
     } else {
       //find it in temp Selected
 
-      let foundProduct = this.state.tempSelected.find(s => s.pid === pid);
+      let foundProduct = this.state.tempSelected.find((s) => s.pid === pid);
       let updatedProduct = _.clone(foundProduct);
 
       if (foundProduct) {
@@ -475,36 +476,36 @@ class ProductProvider extends React.Component {
       axios
         .post(`/api/user/${this.state.currentUser._id}/cart`, updatedProduct)
         //update the cart with response from db
-        .then(res => {
+        .then((res) => {
           this.setState({ cart: res.data }, () => {
             this.addTotal();
           }); //setState does not update state imediatly. use es6 callback to ensure state updated before calling funciton
         }) //this.addTotal()
 
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
   };
 
   // remove it in db, and set cart to res
-  removeItem = id => {
+  removeItem = (id) => {
     let p_id = this.getItem(id)._id;
     console.log("removing item");
     if (p_id) {
       axios
         .delete(`/api/user/${this.state.currentUser._id}/cart/${p_id}`)
-        .then(res => {
+        .then((res) => {
           this.setState({ cart: res.data }, () => this.addTotal());
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
   };
   //store temp data in tempSelected. If item added to cart, then move temp data to cart
 
-  increment = id => {
+  increment = (id) => {
     //need to update selectedCount of the product in cart
     let tempCart = [...this.state.cart];
     //update the count of the product in the
-    const selectedProduct = tempCart.find(i => i.pid === id);
+    const selectedProduct = tempCart.find((i) => i.pid === id);
     const index = tempCart.indexOf(selectedProduct);
     const product = tempCart[index];
     if (product.selectedCount < 20) {
@@ -514,7 +515,7 @@ class ProductProvider extends React.Component {
 
     axios
       .put(`/api/user/${this.state.currentUser._id}/cart`, tempCart)
-      .then(res => {
+      .then((res) => {
         this.setState({ cart: res.data }, () => {
           console.log("updated cart in state is");
           console.log(res.data);
@@ -523,10 +524,10 @@ class ProductProvider extends React.Component {
       });
   };
 
-  decrement = id => {
+  decrement = (id) => {
     let tempCart = [...this.state.cart];
     //update the count of the product in the
-    const selectedProduct = tempCart.find(i => i.pid === id);
+    const selectedProduct = tempCart.find((i) => i.pid === id);
     const index = tempCart.indexOf(selectedProduct);
     const product = tempCart[index];
     if (product.selectedCount > 0) {
@@ -536,7 +537,7 @@ class ProductProvider extends React.Component {
 
     axios
       .put(`/api/user/${this.state.currentUser._id}/cart`, tempCart)
-      .then(res => {
+      .then((res) => {
         this.setState({ cart: res.data }, () => {
           console.log("updated cart in state is");
           console.log(res.data);
@@ -550,7 +551,7 @@ class ProductProvider extends React.Component {
     console.log("calculating total of cart, cart:");
 
     console.log(this.state.cart);
-    this.state.cart.forEach(i => {
+    this.state.cart.forEach((i) => {
       subTotal = subTotal + i.selectedTotal;
     });
     console.log("total price of all planters in cart (pre-tax)  " + subTotal);
@@ -560,7 +561,7 @@ class ProductProvider extends React.Component {
     this.setState({
       cartSubtotal: subTotal,
       cartTax: tax,
-      cartTotal: total
+      cartTotal: total,
     });
   };
 
@@ -570,12 +571,12 @@ class ProductProvider extends React.Component {
     console.log("clearing cart");
     axios
       .delete(`/api/user/${this.state.currentUser._id}/cart/9`)
-      .then(res =>
+      .then((res) =>
         this.setState({ cart: [], tempSelected: [] }, () => {
           this.addTotal();
         })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   // ======================USER PAGE FUNCTIONS =======================//
@@ -614,7 +615,7 @@ class ProductProvider extends React.Component {
           openModal: this.openModal,
           removeItem: this.removeItem,
           removeFromWishlist: this.removeFromWishlist,
-          showPricing: this.showPricing
+          showPricing: this.showPricing,
         }}
       >
         {this.props.children}
