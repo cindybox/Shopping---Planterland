@@ -1,3 +1,4 @@
+//'esversion:6'
 import React from "react";
 import Product from "./Product";
 import { ToastContainer } from "react-toastify";
@@ -30,7 +31,7 @@ export default class ProductList extends React.Component {
           searchTerm={this.props.searchTerm}
         />
 
-        <Waypoint onLeave={this.changeToGreen} onEnter={this.changeToGreen} />
+        {/* <Waypoint onLeave={this.changeToGreen} onEnter={this.changeToGreen} /> */}
 
         <div className="py-5">
           <div className="container">
@@ -38,8 +39,8 @@ export default class ProductList extends React.Component {
             {/*<Title name="our" title="products" />*/}
             <div className="row">
               <ProductConsumer>
-                {value => {
-                  return value.products.map(item => {
+                {(value) => {
+                  return value.products.map((item) => {
                     return (
                       <Product
                         key={item.title + 1}
